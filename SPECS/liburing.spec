@@ -1,15 +1,14 @@
 Name: liburing
-Version: 0.7
-Release: 7%{?dist}
+Version: 2.3
+Release: 2%{?dist}
 Summary: Linux-native io_uring I/O access library
 License: (GPLv2 with exceptions and LGPLv2+) or MIT
 Source0: https://brick.kernel.dk/snaps/%{name}-%{version}.tar.gz
 Source1: https://brick.kernel.dk/snaps/%{name}-%{version}.tar.gz.asc
 URL: https://git.kernel.dk/cgit/liburing/
 BuildRequires: gcc
+BuildRequires: gcc-c++
 BuildRequires: make
-
-Patch0: 8aac320-examples-ucontext-cp.c-cope-with-variable-SIGSTKSZ.patch
 
 %description
 Provides native async IO for the Linux kernel, in a fast and efficient
@@ -47,8 +46,22 @@ for the Linux-native io_uring.
 %exclude %{_libdir}/liburing.a
 %{_libdir}/pkgconfig/*
 %{_mandir}/man2/*
+%{_mandir}/man3/*
+%{_mandir}/man7/*
 
 %changelog
+* Thu Apr 27 2023 Jeff Moyer <jmoyer@redhat.com> - 2.3-2.el9
+- n-v-r bump
+- Related: rhbz#2182163
+
+* Tue Apr 18 2023 Jeff Moyer <jmoyer@redhat.com> - 2.3-1.el9
+- Rebase to 2.3.
+- Resolves: rhbz#2182163
+
+* Fri Jun 17 2022 Jeff Moyer <jmoyer@redhat.com> - 2.1-1.el9
+- Rebase to 2.1.
+- Resolves: rhbz#2070603
+
 * Mon Aug 09 2021 Mohan Boddu <mboddu@redhat.com> - 0.7-7
 - Rebuilt for IMA sigs, glibc 2.34, aarch64 flags
   Related: rhbz#1991688
